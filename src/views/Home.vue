@@ -32,7 +32,27 @@
       title="Create"
       :visible.sync="createVisible"
       width="600px">
-      <span>这是一段信息</span>
+      <el-form ref="form" :model="form" label-width="80px">
+        <el-form-item label="name">
+          <el-input v-model="form.name"></el-input>
+        </el-form-item>
+
+        <el-form-item label="language">
+          <el-select v-model="form.language" placeholder="choose language">
+            <el-option label="HTML" value="html"></el-option>
+            <el-option label="JAVASCRIPT" value="javascript"></el-option>
+          </el-select>
+        </el-form-item>
+
+
+        <el-form-item label="description">
+          <el-input type="textarea" v-model="form.desc"></el-input>
+        </el-form-item>
+
+        <el-form-item label="content">
+          <el-input type="textarea" v-model="form.content"></el-input>
+        </el-form-item>
+      </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click="createVisible = false">Cancel</el-button>
         <el-button type="primary" @click="createDialogSure">Sure</el-button>
@@ -46,7 +66,13 @@ export default {
   name: 'Home',
   data () {
     return {
-      createVisible: false
+      createVisible: false,
+      form: {
+        name: '',
+        language: '',
+        desc: '',
+        content: ''
+      }
     }
   },
   methods: {
@@ -56,6 +82,9 @@ export default {
     },
     createDialogSure() {
 
+    },
+    onSubmit() {
+      console.log('submit!');
     }
   }
 }
